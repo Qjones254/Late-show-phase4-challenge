@@ -13,4 +13,17 @@ def create_app():
 
     db.init_app(app)
     migrate.init_app(app, db)
-    
+
+    from models import Episode, Guest, Appearance
+
+    #from routes import *
+
+    return app
+
+if __name__ == '__main__':
+    app = create_app()
+    with app.app_context():
+
+        db.create_all()
+        
+    app.run(debug=True)
