@@ -5,10 +5,10 @@ from models import Episode, Guest  # Import your models here
 app = create_app()
 
 def seed_database():
-    with open('/development/phase4/challengess/Late-show-phase4-challenge/file/seed.csv', 'r') as f:
+    with open('data/seed.csv', 'r') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            episode = Episode(date=row['date'], number=row['number'])
+            episode = Episode(year=row['Year'], number=row['number'])
             db.session.add(episode)
         db.session.commit()
 

@@ -6,7 +6,7 @@ class Episode(db.Model):
     __tablename__ = 'episodes'
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.String, nullable=False)
+    year = db.Column(db.String, nullable=False)
     number = db.Column(db.Integer, nullable=False)
 
     appearances = db.relationship('Appearance', back_populates='episode', cascade='all, delete-orphan')
@@ -14,7 +14,7 @@ class Episode(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "date": self.date,
+            "year": self.year,
             "number": self.number,
             "appearances": [appearance.to_dict() for appearance in self.appearances]
         }
@@ -55,7 +55,7 @@ class Appearance(db.Model):
             "guest": self.guest.to_dict(),
             "episode": {
                 "id": self.episode.id,
-                "date": self.episode.date,
+                "year": self.episode.year,
                 "number": self.episode.number
             }
         }
